@@ -5,15 +5,15 @@ import About from "@/app/ui/components/game/About";
 import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 
-export default async function GamePage({params}: {params: {slug: string}}) {
-    const slug = params.slug
+export default async function GamePage({params}: {params: Promise<{slug: string}>}) {
+    const slug = (await params).slug
     const game = await fetchGameBySlug(slug)
     
-    if (!game || !game.name || !game.id) {
-        notFound()
-    }
+    // if (!game || !game.name || !game.id) {
+    //     notFound()
+    // }
     return (
         <div className="w-full h-full bg-white/5 px-6 py-6 rounded-3xl">
             <BreadCumbs breadcrumbs={[{name: 'Home', href: '/'}, {name: 'Games', href: '/games'}, {name: game.name, href: `/games/${game.slug}`, active: true}]} />
@@ -63,7 +63,7 @@ export default async function GamePage({params}: {params: {slug: string}}) {
                     <div className="col-span-1 flex flex-col gap-y-2">
                         <h5 className="text-white/65 text-sm font-semibold uppercase">System platforms:</h5>
                         <ul className="flex gap-x-2 flex-wrap items-center gap-x-3">
-                            {game?.parent_platforms?.length > 0 ? game.parent_platforms?.map((parentPlatform: ParentPlatformType, index: number) => {
+                            {game?.parent_platforms?.length > 0 ? game.parent_platforms?.map((parentPlatform: ParentPlatformType) => {
                                 const icon = parentPlatform.platform.slug === "pc" ? '/platforms/windows.svg' 
                                 : parentPlatform.platform.slug === "playstation" ? '/platforms/ps.svg' 
                                 : parentPlatform.platform.slug === "xbox" ? '/platforms/xbox.svg' 

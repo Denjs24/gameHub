@@ -8,7 +8,7 @@ const api = axios.create({
     }
 })
 
-const apiKey = process.env.RAWG_API_KEY;
+const apiKey = process.env.NEXT_PUBLIC_RAWG_API_KEY;
 
 export async function fetchGames(page: number = 1, pageSize: string = '20', params: string = '', developer: string = '') {
     console.log(page, pageSize, params, developer);

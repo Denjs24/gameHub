@@ -1,8 +1,7 @@
-import { fetchGames } from "../lib/api";
 import Select from "../ui/components/games/Select";
 import WrapperProducts from "../ui/components/home/WrapperProducts";
 
-export default async function Home({searchParams}: {searchParams: {page?: string, sort?: string, itemsPerPage?: string}}) {
+export default async function Home({searchParams}: {searchParams: Promise<{page?: string, sort?: string, itemsPerPage?: string}>}) {
   const params = await searchParams
   
   return (

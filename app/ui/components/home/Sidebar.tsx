@@ -1,6 +1,6 @@
 'use client'
 import { LinkType } from "@/app/lib/definition"
-import { DocumentMagnifyingGlassIcon, FireIcon, ArrowRightIcon, StarIcon } from "@heroicons/react/24/outline"
+import {  FireIcon, ArrowRightIcon, StarIcon } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
 import Link from "next/link"
 import { usePathname } from "next/navigation"

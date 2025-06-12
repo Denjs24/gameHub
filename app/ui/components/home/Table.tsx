@@ -8,7 +8,7 @@ export async function Table ({page, sort, itemsPerPage, developer}: {page?: stri
     const {results: games, count} = await fetchGames(Number(page) || 1, itemsPerPage || '20', sort || '', developer || '');
     const perPage = Number(itemsPerPage) || 20;
     
-    if(games.length === 0) {
+    if(games && games.length === 0) {
         return (
             <div className="flex flex-col gap-4">
                 <span className="text-white/80 text-sm">No games found</span>

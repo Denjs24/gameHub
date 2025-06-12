@@ -2,16 +2,17 @@ import { fetchDeveloperBySlug } from "@/app/lib/api"
 import { BreadCumbs } from "@/app/ui/components/BreadCrumbs"
 import { Table } from "@/app/ui/components/home/Table"
 import Image from "next/image"
-import { notFound } from "next/navigation"
+// import { notFound } from "next/navigation"
 
-export default async function DeveloperPage(props: {params: {slug: string}, searchParams: {page?: string, sort?: string, itemsPerPage?: string,}}) {
+export default async function DeveloperPage(props: {params: Promise<{slug: string}>, searchParams: Promise<{page?: string, sort?: string, itemsPerPage?: string}>}) {
     const searchParams = await props.searchParams
-    const slug = await props.params.slug
-    const developer = await fetchDeveloperBySlug(props.params.slug)
+    const slug = (await props.params).slug
+    const developer = await fetchDeveloperBySlug(slug)
 
-    if(!developer) {
-        notFound()
-    }
+    // if(!developer) {
+    //     notFound()
+    // }
+
     return (
         <div className="w-full h-full bg-white/5 px-6 py-6 rounded-3xl">
             <BreadCumbs breadcrumbs={[{name: 'Home', href: '/'}, {name: 'Developers', href: '/developers'}, {name: developer.name, href: `/developers/${developer.slug}`, active: true}]} />

@@ -1,5 +1,4 @@
 'use client'
-import { GameType } from "@/app/lib/definition";
 import { btnDefaultClasses } from "../../classNamesStyle";
 import clsx from "clsx";
 import { useState } from "react";

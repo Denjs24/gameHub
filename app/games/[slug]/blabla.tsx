@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function NotFound({params} : {params: {slug: string}}) {
+export default function NotFound() {
     
     return (
         <div className="w-full h-full bg-white/5 px-6 py-6 rounded-3xl">
