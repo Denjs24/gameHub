@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Select from "../ui/components/games/Select";
 import WrapperProducts from "../ui/components/home/WrapperProducts";
 
@@ -11,7 +12,9 @@ export default async function Home({searchParams}: {searchParams: Promise<{page?
         <p className="text-base text-white/80">Base games</p>
       </div>
       <div className="flex justify-between items-center mt-2">
-        <Select />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Select />
+        </Suspense>
       </div>
       <WrapperProducts page={params.page || '1'} sort={params.sort || ''} itemsPerPage={params.itemsPerPage || '20'} />
     </div>
