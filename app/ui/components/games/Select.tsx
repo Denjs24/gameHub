@@ -21,7 +21,7 @@ export default function Select() {
   
   
   return (
-    <div className="flex items-center gap-x-2 my-4 flex-wrap gap-y-2">
+    <div className="flex flex-col items-start gap-x-2 my-4 flex-wrap gap-y-2 sm:flex-row sm:items-center">
         <span className="text-white/80 text-sm font-semibold">Sort by:</span>
         <select onChange={onChange} defaultValue={searchParams.get('sort') || ""} className="text-black bg-white px-2 py-1 rounded-md">
             <option value="">Default</option>

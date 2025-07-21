@@ -3,13 +3,13 @@ import { btnDefaultClasses } from "../../classNamesStyle";
 import clsx from "clsx";
 import { useState } from "react";
 
-export default function About({description} : {description: string}) {
+export default function About({description, title} : {description: string, title: string}) {
     const [isReadMore, setIsReadMore] = useState(false)
 
     return (
         <div className="flex flex-col gap-y-3">
-            <h3 className="text-2xl text-white font-bold ">About the game:</h3>
-            <p className={clsx(
+            <h3 className="text-2xl text-white font-bold ">{title ? title + ":" : "About:"}</h3>
+            <p  className={clsx(
                 "text-base text-white/80 text-ellipsis overflow-hidden ", 
                 {
                     "line-clamp-none": isReadMore,

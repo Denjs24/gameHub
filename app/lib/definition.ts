@@ -106,4 +106,22 @@ export type GameType = {
     publishers?: PublisherType[],
     developers?: DeveloperType[],
     parent_platforms?: ParentPlatformType[],
-  }
+}
+
+export type Platform = {
+  id?: number;
+  name: string;
+  slug?: string;
+  games_count?: number;
+  image_background?: string;
+  image?: string;
+  year_start?: string;
+  year_end?: string;
+}
+
+export type PlatformList = {
+  count: number;
+  next?: string;
+  previous?: string;
+  results: Platform[];
+}

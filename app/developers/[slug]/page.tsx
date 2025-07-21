@@ -2,16 +2,16 @@ import { fetchDeveloperBySlug } from "@/app/lib/api"
 import { BreadCumbs } from "@/app/ui/components/BreadCrumbs"
 import { Table } from "@/app/ui/components/home/Table"
 import Image from "next/image"
-// import { notFound } from "next/navigation"
+import { notFound } from "next/navigation"
 
 export default async function DeveloperPage(props: {params: Promise<{slug: string}>, searchParams: Promise<{page?: string, sort?: string, itemsPerPage?: string}>}) {
     const searchParams = await props.searchParams
     const slug = (await props.params).slug
     const developer = await fetchDeveloperBySlug(slug)
 
-    // if(!developer) {
-    //     notFound()
-    // }
+    if(!developer) {
+        notFound()
+    }
 
     return (
         <div className="w-full h-full bg-white/5 px-6 py-6 rounded-3xl">
@@ -21,8 +21,8 @@ export default async function DeveloperPage(props: {params: Promise<{slug: strin
                 <h1 className="text-[24px] font-bold absolute bottom-3 left-3  text-white z-20 md:text-[48px] md:bottom-4 md:left-4">{developer.name}</h1>
             </div>
             <div className="flex flex-col gap-y-8">
-                {/* <span className="text-lg text-white font-medium">Created games: {developer.games_count}</span> */}
-                <Table page={searchParams.page} sort={searchParams.sort} itemsPerPage={searchParams.itemsPerPage} developer={slug || ''}/>
+                <h3 className="text-2xl text-white font-bold ">Games created by {developer.name}</h3>
+                <Table page={searchParams.page} itemsPerPage={searchParams.itemsPerPage} developer={slug} />
             </div>
         </div>
     )

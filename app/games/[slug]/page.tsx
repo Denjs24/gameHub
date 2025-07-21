@@ -5,15 +5,15 @@ import About from "@/app/ui/components/game/About";
 import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-// import { notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 
 export default async function GamePage({params}: {params: Promise<{slug: string}>}) {
     const slug = (await params).slug
     const game = await fetchGameBySlug(slug)
     
-    // if (!game || !game.name || !game.id) {
-    //     notFound()
-    // }
+    if (!game || !game.name || !game.id) {
+        notFound()
+    }
     return (
         <div className="w-full h-full bg-white/5 px-6 py-6 rounded-3xl">
             <BreadCumbs breadcrumbs={[{name: 'Home', href: '/'}, {name: 'Games', href: '/games'}, {name: game.name, href: `/games/${game.slug}`, active: true}]} />
@@ -22,7 +22,7 @@ export default async function GamePage({params}: {params: Promise<{slug: string}
                 <h1 className="text-[24px] font-bold absolute bottom-3 left-3  text-white z-20 md:text-[48px] md:bottom-4 md:left-4">{game.name}</h1>
             </div>
             <div className="flex flex-col gap-y-8">
-                <About description={game.description_raw} />
+                <About description={game.description_raw} title="About the game" />
                 <div className="flex gap-x-4 flex-wrap gap-y-4 items-center">
                     <span className="text-black/80 rounded-md bg-white px-2 py-1 font-semibold text-sm ">Date released: {new Date(game.released).toLocaleDateString()}</span>
                     <span className="text-white px-2 py-1 font-semibold text-sm uppercase">
@@ -110,7 +110,7 @@ export default async function GamePage({params}: {params: Promise<{slug: string}
                         <ul className="inline">
                             {game?.publishers.length > 0 ? game.publishers?.map((publisher: PublisherType, index: number) => (
                                 <li key={publisher.id}>
-                                    {publisher.name}{index < game.publishers.length - 1 && ","}
+                                    <Link href={`/publishers/${publisher.slug}`} className="text-white hover:underline">{publisher.name}</Link>{index < game.publishers.length - 1 && ","}
                                 </li>
                             )) : <li>No publishers</li>}
                         </ul>

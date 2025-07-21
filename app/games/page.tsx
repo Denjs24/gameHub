@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import Select from "../ui/components/games/Select";
-import WrapperProducts from "../ui/components/home/WrapperProducts";
+import { Table } from "../ui/components/home/Table";
+import SelectPlatforms from "../ui/components/games/SelectPlatforms";
 
-export default async function Home({searchParams}: {searchParams: Promise<{page?: string, sort?: string, itemsPerPage?: string}>}) {
+export default async function Home({searchParams}: {searchParams: Promise<{page?: string, sort?: string, itemsPerPage?: string, platforms?: string,}>}) {
   const params = await searchParams
   
   return (
@@ -11,12 +12,15 @@ export default async function Home({searchParams}: {searchParams: Promise<{page?
         <h1 className="text-4xl font-bold md:text-[48px]">Games</h1>
         <p className="text-base text-white/80">Base games</p>
       </div>
-      <div className="flex justify-between items-center mt-2">
+      <div className="flex justify-between flex-wrap items-center mt-2 mb-2">
         <Suspense fallback={<div>Loading...</div>}>
           <Select />
         </Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
+          <SelectPlatforms />
+        </Suspense>
       </div>
-      <WrapperProducts page={params.page || '1'} sort={params.sort || ''} itemsPerPage={params.itemsPerPage || '20'} />
+      <Table page={params.page} sort={params.sort} itemsPerPage={params.itemsPerPage} platforms={params.platforms} />
     </div>
   );
 }

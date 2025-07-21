@@ -1,4 +1,4 @@
-import WrapperProducts from "./ui/components/home/WrapperProducts";
+import { Table } from "./ui/components/home/Table";
 
 export default async function Home({searchParams}: {searchParams: Promise<{page?: string, sort?: string, itemsPerPage?: string}>}) { 
   const params = await searchParams
@@ -9,7 +9,9 @@ export default async function Home({searchParams}: {searchParams: Promise<{page?
         <h1 className="text-4xl font-bold md:text-[48px]">Home</h1>
         <p className="text-base text-white/80">Based on player counts and release date</p>
       </div>
-      <WrapperProducts page={params?.page || '1'} sort={params?.sort || ''} itemsPerPage={params?.itemsPerPage || '20'} />
+      <div className="mt-8">
+        <Table page={params?.page} sort={params?.sort} itemsPerPage={params?.itemsPerPage} />
+      </div>
     </div>
   );
 }

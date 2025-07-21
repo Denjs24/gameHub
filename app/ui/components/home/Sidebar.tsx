@@ -1,6 +1,6 @@
 'use client'
 import { LinkType } from "@/app/lib/definition"
-import {  FireIcon, ArrowRightIcon, StarIcon } from "@heroicons/react/24/outline"
+// import {  FireIcon, ArrowRightIcon, StarIcon } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -8,12 +8,14 @@ import { usePathname } from "next/navigation"
 const links: LinkType[] = [
     {label: 'Home', href: '/'},
     {label: 'All Games', href: '/games'},
-    {label: 'Reviews', href: '/reviews'},
-    {label: 'New Releases', childrens: [
-        {label: 'Last 30 days', href: '/discover/new-releases/last-30-days', icon: <StarIcon />},
-        {label: 'This week', href: '/discover/new-releases/this-week', icon: <FireIcon />},
-        {label: 'Next week', href: '/discover/new-releases/next-week', icon: <ArrowRightIcon />},
-    ]},
+    {label: 'Developers', href: '/developers'},
+    {label: 'Publishers', href: '/publishers'},
+    // {label: 'Reviews', href: '/reviews'},
+    // {label: 'New Releases', childrens: [
+    //     {label: 'Last 30 days', href: '/discover/new-releases/last-30-days', icon: <StarIcon />},
+    //     {label: 'This week', href: '/discover/new-releases/this-week', icon: <FireIcon />},
+    //     {label: 'Next week', href: '/discover/new-releases/next-week', icon: <ArrowRightIcon />},
+    // ]},
 ]
 
 export function Sidebar () {
