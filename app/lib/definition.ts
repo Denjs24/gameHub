@@ -75,6 +75,7 @@ export type GameType = {
     background_image: string,
     rating?: number,
     rating_top?: number,
+    screenshots_count?: number;
     ratings?: {
       id: number,
       title: string,
@@ -100,6 +101,7 @@ export type GameType = {
       slug: string,
       name: string
     },
+    movies_count?: number
     platforms?: PlatformsType[],
     genres?: GenreType[],
     tags?: TagType[],
@@ -124,4 +126,12 @@ export type PlatformList = {
   next?: string;
   previous?: string;
   results: Platform[];
+}
+
+export type ScreenShotType = {
+  id: number;
+  image: string,
+  width: number;
+  height: number;
+  is_deleted: boolean;
 }

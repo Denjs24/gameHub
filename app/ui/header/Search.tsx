@@ -60,7 +60,7 @@ export function Search () {
                 placeholder="Search"
                 className="w-full rounded-4xl border-none bg-white px-4 py-2 text-sm text-black outline-2 outline-black/10 placeholder:text-black/50 focus:outline-black min-w-0 w-full max-w-full" 
             />
-            <button type="submit" className={`${btnDefaultClasses} flex-none`}>Search</button>
+            {/* <button type="submit" className={`${btnDefaultClasses} flex-none`}>Search</button> */}
             <SearchResult handleClick={handleClick} resultItems={searchItems} />
         </form>
     )

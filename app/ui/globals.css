@@ -20,3 +20,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.thumbs-swiper-card .swiper-slide:not(.swiper-slide-thumb-active){
+  opacity: 0.5;
+}
+.thumbs-swiper-card .swiper-slide:not(.swiper-slide-thumb-active):hover{
+  opacity: 0.7;
+}

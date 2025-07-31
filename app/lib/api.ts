@@ -82,3 +82,12 @@ export async function searchGames(query: string) {
         console.log(error);
     }
 }
+
+export async function fetchScreenshots(id: string) {
+    try {
+        const response = await api.get(`/games/${id}/screenshots?key=${apiKey}`)       
+        return response.data
+    } catch (error) {
+        console.log(error);
+    }
+}

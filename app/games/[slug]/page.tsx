@@ -2,6 +2,9 @@ import { fetchGameBySlug } from "@/app/lib/api"
 import { DeveloperType, GenreType, ParentPlatformType, PlatformsType, PublisherType, TagType } from "@/app/lib/definition";
 import { BreadCumbs } from "@/app/ui/components/BreadCrumbs";
 import About from "@/app/ui/components/game/About";
+import { BannerGame } from "@/app/ui/components/game/Banner";
+import { LikeGame } from "@/app/ui/components/game/Like";
+import { SliderCard } from "@/app/ui/components/game/Slider";
 import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,13 +17,25 @@ export default async function GamePage({params}: {params: Promise<{slug: string}
     if (!game || !game.name || !game.id) {
         notFound()
     }
+
+    console.log(game.screenshots_count);
+    
     return (
         <div className="w-full h-full bg-white/5 px-6 py-6 rounded-3xl">
             <BreadCumbs breadcrumbs={[{name: 'Home', href: '/'}, {name: 'Games', href: '/games'}, {name: game.name, href: `/games/${game.slug}`, active: true}]} />
-            <div className="w-full mb-6 aspect-video relative rounded-2xl overflow-hidden before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-b before:to-black/40 before:from-transparent before:z-1">
-                <Image src={game.background_image} alt={game.name} width={1600} height={900} className="w-full h-full object-cover"/>
-                <h1 className="text-[24px] font-bold absolute bottom-3 left-3  text-white z-20 md:text-[48px] md:bottom-4 md:left-4">{game.name}</h1>
+            
+            {game.screenshots_count 
+            ? 
+            <div className="w-full mb-6 relative">
+                <LikeGame id={game.id} className="w-8 h-8 rounded-full bg-white cursor-pointer z-2 flex justify-center shadow-xl items-center absolute top-2 right-2" />
+                <SliderCard id={game.id} />
             </div>
+            :
+            <BannerGame name={game.name} background_image={game.background_image} id={game.id} />
+            }
+            
+            
+
             <div className="flex flex-col gap-y-8">
                 <About description={game.description_raw} title="About the game" />
                 <div className="flex gap-x-4 flex-wrap gap-y-4 items-center">
