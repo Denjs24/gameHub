@@ -1,8 +1,4 @@
-'use client'
-
-import { addFavorite, isFavorite, removeFavorite } from "@/app/lib/favorite";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { LikeGame } from "./Like";
 
 type BannerGameProps = {
@@ -10,13 +6,7 @@ type BannerGameProps = {
     background_image: string | undefined | null,
     id: string
 }
-
 export function BannerGame(props : BannerGameProps) {
-    const [isFav, setIsFav] = useState<boolean>(false)
-
-    useEffect(() => {
-        setIsFav(isFavorite(+(props.id)));
-    }, [props.id]);
 
     return(
         <div className="w-full mb-6 aspect-video relative rounded-2xl overflow-hidden before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-b before:to-black/40 before:from-transparent before:z-1">

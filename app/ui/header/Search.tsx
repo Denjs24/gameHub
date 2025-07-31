@@ -1,6 +1,5 @@
 'use client'
 import { searchGames } from '@/app/lib/api';
-import { btnDefaultClasses } from '../classNamesStyle';
 import { useState, useRef } from 'react';
 import { GameType } from '@/app/lib/definition';
 import { useDebouncedCallback } from 'use-debounce';
@@ -44,7 +43,7 @@ export function Search () {
     }
 
     return (
-        <form className="flex items-center gap-x-2 relative z-1 flex-auto relative max-w-md">
+        <form className="flex items-center gap-x-2 z-1 flex-auto relative max-w-md">
             {/* <DocumentMagnifyingGlassIcon className="size-6 text-black/50"/> */}
             <input 
                 ref={inputRef}

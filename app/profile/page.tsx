@@ -1,7 +1,6 @@
 import { auth, signOut } from "@/auth"
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { getProfileDataFromStorage } from "../lib/profile";
 import { Form } from "../ui/components/profile/Form";
 
 export default async function ProfilePage() {

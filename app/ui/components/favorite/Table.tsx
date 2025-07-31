@@ -1,6 +1,6 @@
 "use client";
 import { GameType } from "@/app/lib/definition";
-import { fetchDevelopes, fetchGameBySlug } from "@/app/lib/api";
+import { fetchGameBySlug } from "@/app/lib/api";
 import Pagination from "../home/Pagination";
 import SelectItemsPerPage from "../games/SelectItemsPerPage";
 import { Suspense, useEffect, useState } from "react";
@@ -31,6 +31,7 @@ export function Table ({page = '1', itemsPerPage = '20'}: {page?: string, itemsP
                             if (!res || !res.id) return null;
                             return res;
                         } catch (e) {
+                            console.log(e);
                             return null;
                         }
                     })
@@ -51,7 +52,7 @@ export function Table ({page = '1', itemsPerPage = '20'}: {page?: string, itemsP
             setGames([]);
             setCount(0);
         }
-    }, [favIds]);
+    }, [favIds, page]);
 
     const perPage = Number(itemsPerPage);
 
