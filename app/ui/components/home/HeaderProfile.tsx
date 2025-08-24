@@ -4,6 +4,9 @@ import Link from "next/link";
 
 export async function HeaderProfile() {
     const session = await auth();
+    console.log(session);
+    console.log(session);
+    
 
     if(!session){
         return(

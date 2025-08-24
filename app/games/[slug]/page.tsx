@@ -1,9 +1,10 @@
 import { fetchGameBySlug } from "@/app/lib/api"
-import { DeveloperType, GenreType, ParentPlatformType, PlatformsType, PublisherType, TagType } from "@/app/lib/definition";
+import { DeveloperType, GenreType, ParentPlatformType, PlatformsType, PublisherType, StoreType, TagType } from "@/app/lib/definition";
 import { BreadCumbs } from "@/app/ui/components/BreadCrumbs";
 import About from "@/app/ui/components/game/About";
 import { BannerGame } from "@/app/ui/components/game/Banner";
 import { LikeGame } from "@/app/ui/components/game/Like";
+import { ReviewsSection } from "@/app/ui/components/game/Reviews";
 import { SliderCard } from "@/app/ui/components/game/Slider";
 import { clsx } from "clsx";
 import Image from "next/image";
@@ -17,11 +18,9 @@ export default async function GamePage({params}: {params: Promise<{slug: string}
     if (!game || !game.name || !game.id) {
         notFound()
     }
-
-    console.log(game.screenshots_count);
     
     return (
-        <div className="w-full h-full bg-white/5 px-6 py-6 rounded-3xl">
+        <div className="w-full h-full bg-white/5 p-4 rounded-3xl md:p-6">
             <BreadCumbs breadcrumbs={[{name: 'Home', href: '/'}, {name: 'Games', href: '/games'}, {name: game.name, href: `/games/${game.slug}`, active: true}]} />
             
             {game.screenshots_count 
@@ -139,12 +138,34 @@ export default async function GamePage({params}: {params: Promise<{slug: string}
                         <ul className="flex gap-x-2 flex-wrap">
                             {game.tags.length > 0 ? game.tags?.map((tag: TagType, index: number) => (
                                 <li key={tag.id}>
-                                    {tag.name}{index < game.tags.length - 1 && ","}
+                                    <Link href={`/games?tags=${tag.slug}`} className="text-white hover:underline">{tag.name}</Link>{index < game.tags.length - 1 && ","}
                                 </li>
                             )) : <li>No tags</li>}
                         </ul>
                     </div>
+                    <div className="col-span-1 flex flex-col gap-y-2 lg:col-span-4 md:col-span-3 sm:col-span-2">
+                        <h5 className="text-white/65 text-sm font-semibold uppercase">Stores:</h5>
+                        <ul className="flex gap-x-2 flex-wrap">
+                            {game.stores.length > 0 ? game.stores?.map((store: StoreType, index: number) => {
+                                const rawUrl = store.url || store?.store?.domain || '';
+                                const url = rawUrl.startsWith('http') ? rawUrl : `https://${rawUrl}`;
+                                return (
+                                    <li key={store.id}>
+                                        <a
+                                            href={url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-white hover:underline"
+                                        >
+                                            {store?.store?.name}
+                                        </a>{index < game.stores.length - 1 && ","}
+                                    </li>
+                                )
+                            }) : <li>No stores</li>}
+                        </ul>
+                    </div>
                 </div>
+                <ReviewsSection slug={game.slug}/>
             </div>
         </div>
     )

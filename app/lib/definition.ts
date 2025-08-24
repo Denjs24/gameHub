@@ -108,6 +108,7 @@ export type GameType = {
     publishers?: PublisherType[],
     developers?: DeveloperType[],
     parent_platforms?: ParentPlatformType[],
+    stores?: StoreType[];
 }
 
 export type Platform = {
@@ -135,3 +136,64 @@ export type ScreenShotType = {
   height: number;
   is_deleted: boolean;
 }
+
+export type StoreType = {
+  id: number;
+  url: string;
+  store?: {
+    id?: number;
+    name?: string;
+    slug?: string;
+    domain?: string;
+    games_count?: number;
+    image_background?: string;
+  }
+}
+
+export type ReviewType = {
+  id: number;
+  user: null | {
+    id: number;
+    slug?: string;
+    username?: string;
+    full_name?: string;
+    avatar?: string | null;
+    games_count?: number;
+    collections_count?: number;
+    // можно добавить другие поля, если будут
+  };
+  game?: number;
+  text?: string;
+  text_preview?: string;
+  text_previews?: string[];
+  text_attachments?: number;
+  rating?: number;
+  reactions?: number[]; // если известна структура — уточни
+  created?: string; // ISO-дата
+  edited?: string;  // ISO-дата
+  likes_count?: number;
+  likes_positive?: number;
+  likes_rating?: number;
+  comments_count?: number;
+  comments_parent_count?: number;
+  posts_count?: number;
+  share_image?: string;
+  is_text?: boolean;
+  external_avatar?: string;
+  comments?: {
+    count?: number;
+  };
+  can_delete?: boolean;
+  external_store?: {
+    id?: number;
+    name?: string;
+    domain?: string;
+    slug?: string;
+    games_count?: number;
+    image_background?: string;
+  };
+  external_lang?: string;
+  external_author?: string;
+  external_source?: string;
+  is_external?: boolean;
+};

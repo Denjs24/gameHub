@@ -70,12 +70,15 @@ export function SliderCard ({id} : {id: string}){
             <Swiper
                 onSwiper={(swiper: SwiperType) => setThumbsSwiper(swiper)}
                 spaceBetween={10}
-                slidesPerView={4}
+                slidesPerView={5}
                 freeMode={true}
                 watchSlidesProgress={true}
                 modules={[Navigation, Thumbs]}
                 className="thumbs-swiper-card mb-5"
                 breakpoints={{
+                    1330: {
+                        slidesPerView: 5
+                    },
                     480: {
                         slidesPerView: 4
                     },

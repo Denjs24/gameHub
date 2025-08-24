@@ -14,6 +14,7 @@ type Props = {
   developer?: string;
   publisher?: string;
   platforms?: string;
+  tags?: string;
 };
 
 export function Table(props: Props) {
@@ -28,6 +29,7 @@ export function Table(props: Props) {
     developer = '',
     publisher = '',
     platforms = '',
+    tags = ''
   } = props;
 
   const perPage = Number(itemsPerPage) || 20;
@@ -36,7 +38,7 @@ export function Table(props: Props) {
     const fetchData = async () => {
         try {
             setIsLoading(true);
-            const {results: games, count} = await fetchGames(Number(page), itemsPerPage, sort, developer, publisher, platforms);
+            const {results: games, count} = await fetchGames(Number(page), itemsPerPage, sort, developer, publisher, platforms, tags);
             setGames(games);
             setCount(count);
         } catch (error) {
@@ -47,7 +49,7 @@ export function Table(props: Props) {
         
     };
     fetchData();
-  }, [page, sort, itemsPerPage, developer, publisher, platforms]);
+  }, [page, sort, itemsPerPage, developer, publisher, platforms, tags]);
 
 
   if (isLoading) {

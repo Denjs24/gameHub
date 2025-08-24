@@ -28,3 +28,16 @@ body {
 .thumbs-swiper-card .swiper-slide:not(.swiper-slide-thumb-active):hover{
   opacity: 0.7;
 }
+
+.custom-rate .ant-rate-star-zero svg {
+  fill: #d3d3d3; /* ваш цвет для незаполненных звёзд */
+}
+
+:where(.css-dev-only-do-not-override-1vjf2v5).ant-form-horizontal .ant-form-item-control{
+    flex: 0 0 auto;
+}
+@layer components {
+  .ant-form-item-label > label {
+    @apply text-red-500 font-medium;
+  }
+}
